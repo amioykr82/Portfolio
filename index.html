@@ -303,30 +303,6 @@
             transform: translateY(-4px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
-        .upload-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            cursor: pointer;
-        }
-        .photo-container:hover .upload-overlay {
-            opacity: 1;
-        }
-        .upload-text {
-            color: white;
-            font-size: 14px;
-            font-weight: 600;
-            text-align: center;
-        }
         .contact-card {
             background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
             color: white;
@@ -485,16 +461,8 @@
                     </div>
                     
                     <div class="flex justify-center">
-                        <div class="floating-card w-80 h-80 photo-container relative">
+                        <div class="floating-card w-80 h-80 relative">
                             <img id="profile-photo" src="https://storage.googleapis.com/project-marc-test-public/20231224_124252.jpg-06a76197-4ac2-43db-a642-b26caf32831b" alt="Dr. Amioy Kumar" class="rounded-full w-full h-full object-cover border-8 border-white shadow-2xl">
-                            <div class="upload-overlay">
-                                <div class="upload-text">
-                                    📷<br>
-                                    Change Photo<br>
-                                    <small style="font-size: 10px; opacity: 0.8;">(Browser only)</small>
-                                </div>
-                            </div>
-                            <input type="file" id="photo-upload" accept="image/*" style="display: none;">
                         </div>
                     </div>
                 </div>
@@ -1065,71 +1033,6 @@
             sections.forEach(section => {
                 observer.observe(section);
             });
-
-            // Photo upload functionality
-            const photoContainer = document.querySelector('.photo-container');
-            const photoUpload = document.getElementById('photo-upload');
-            const profilePhoto = document.getElementById('profile-photo');
-            const defaultPhotoSrc = profilePhoto ? profilePhoto.src : '';
-            
-            if (photoContainer && photoUpload && profilePhoto) {
-                // Load saved photo from localStorage on page load
-                const savedPhoto = localStorage.getItem('profilePhoto');
-                if (savedPhoto) {
-                    profilePhoto.src = savedPhoto;
-                    profilePhoto.alt = 'Your uploaded photo';
-                }
-                
-                photoContainer.addEventListener('click', () => {
-                    photoUpload.click();
-                });
-                
-                photoUpload.addEventListener('change', (e) => {
-                    const file = e.target.files[0];
-                    if (file) {
-                        // Validate file type
-                        if (!file.type.startsWith('image/')) {
-                            alert('Please select a valid image file (JPG, PNG, GIF, etc.).');
-                            return;
-                        }
-                        
-                        // Validate file size (max 5MB)
-                        if (file.size > 5 * 1024 * 1024) {
-                            alert('Please select an image smaller than 5MB.');
-                            return;
-                        }
-                        
-                        const reader = new FileReader();
-                        reader.onload = (e) => {
-                            profilePhoto.src = e.target.result;
-                            profilePhoto.alt = 'Your uploaded photo';
-                            
-                            // Store in localStorage for persistence (browser only)
-                            try {
-                                localStorage.setItem('profilePhoto', e.target.result);
-                                console.log('Photo saved to browser storage');
-                            } catch (error) {
-                                console.warn('Could not save photo to browser storage:', error);
-                            }
-                        };
-                        reader.onerror = () => {
-                            alert('Error reading the image file. Please try again.');
-                        };
-                        reader.readAsDataURL(file);
-                    }
-                });
-                
-                // Add double-click to reset to original photo
-                photoContainer.addEventListener('dblclick', (e) => {
-                    e.stopPropagation();
-                    if (defaultPhotoSrc) {
-                        profilePhoto.src = defaultPhotoSrc;
-                        profilePhoto.alt = 'Dr. Amioy Kumar';
-                        localStorage.removeItem('profilePhoto');
-                        console.log('Photo reset to original');
-                    }
-                });
-            }
 
             // Initialize first section as active
             updateActiveNavItem('hero');
