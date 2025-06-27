@@ -490,8 +490,11 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            word-break: keep-all;
-            hyphens: none;
+            white-space: nowrap !important;
+            word-break: keep-all !important;
+            hyphens: none !important;
+            overflow: visible !important;
+            text-overflow: clip !important;
         }
         
         /* Enhanced responsive typography for hero section */
@@ -544,6 +547,32 @@
             .nav-icon {
                 image-rendering: -webkit-optimize-contrast;
                 image-rendering: crisp-edges;
+            }
+        }
+        
+        /* Hero image responsive positioning */
+        @media (min-width: 1920px) {
+            .hero-image-container {
+                right: 2rem !important;
+            }
+        }
+        
+        @media (max-width: 1919px) and (min-width: 1536px) {
+            .hero-image-container {
+                right: 2.5rem !important;
+            }
+        }
+        
+        @media (max-width: 1535px) and (min-width: 1280px) {
+            .hero-image-container {
+                right: 1.5rem !important;
+            }
+        }
+        
+        @media (max-width: 1279px) and (min-width: 1024px) {
+            .hero-image-container {
+                right: 1rem !important;
+                transform: translate(0, -50%) scale(0.9) !important;
             }
         }
     </style>
@@ -634,9 +663,9 @@
                 <div class="section-content">
                     <!-- Desktop Layout with exact positioning -->
                     <div class="hidden lg:block relative">
-                        <!-- Content positioned on the left -->
-                        <div class="absolute left-8 top-0 w-96 text-white">
-                            <h1 class="hero-title mb-6">Dr. Amioy Kumar</h1>
+                        <!-- Content positioned on the left with sufficient width -->
+                        <div class="absolute left-8 top-0 text-white" style="width: min(32rem, calc(100vw - 28rem)); min-width: 24rem;">
+                            <h1 class="hero-title mb-6 whitespace-nowrap">Dr. Amioy Kumar</h1>
                             <p class="text-2xl font-light mb-4 text-blue-100">AI Solution Architect</p>
                             <p class="text-xl mb-8 text-blue-100">MS(R), PhD, IIT Delhi</p>
                             
@@ -666,8 +695,8 @@
                             </div>
                         </div>
                         
-                        <!-- Image positioned towards the right, closer to vertical navigation -->
-                        <div class="absolute right-80 top-1/2 transform -translate-y-1/2">
+                        <!-- Image positioned much closer to the right vertical navigation -->
+                        <div class="absolute right-32 top-1/2 transform -translate-y-1/2 hero-image-container">
                             <div class="floating-card w-80 h-80 relative">
                                 <img id="profile-photo" src="./WhatsApp%20Image%202025-06-27%20at%2015.13.34.jpeg" alt="Dr. Amioy Kumar" class="rounded-full w-full h-full object-cover border-8 border-white shadow-2xl" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="rounded-full w-full h-full bg-gradient-to-br from-blue-500 to-blue-700 border-8 border-white shadow-2xl flex items-center justify-center text-white text-6xl font-bold" style="display: none;">
