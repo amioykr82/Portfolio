@@ -16,36 +16,74 @@
     CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
     -->
     <style>
+        /* Cross-Browser Font Smoothing & Base Styles */
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px; /* Base font size for consistent scaling */
+        }
+        
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #1e293b;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
+        
+        /* Responsive Variables */
+        :root {
+            --nav-width-xl: 280px;
+            --nav-width-lg: 260px;
+            --nav-width-md: 240px;
+            --content-padding-xl: 2rem;
+            --content-padding-lg: 1.5rem;
+            --content-padding-md: 1rem;
+            --section-heading-xl: 3rem;
+            --section-heading-lg: 2.5rem;
+            --section-heading-md: 2rem;
+            --section-heading-sm: 1.75rem;
+        }
+        
         .glass-effect {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px); /* Safari support */
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
+        
         .hero-bg {
             background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #3b82f6 100%);
         }
+        
+        /* Enhanced Vertical Navigation with Multiple Breakpoints */
         .vertical-nav {
             position: fixed;
             right: 1rem;
             top: 0;
             height: 100vh;
-            width: 260px;
+            width: var(--nav-width-xl);
             z-index: 40;
             background: linear-gradient(135deg, rgba(30, 58, 138, 0.95) 0%, rgba(30, 64, 175, 0.95) 100%);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-left: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: flex-start;
-            padding: 2rem;
+            padding: var(--content-padding-xl);
             box-shadow: -10px 0 50px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
         }
+        
         .vertical-nav::before {
             content: '';
             position: absolute;
@@ -57,6 +95,7 @@
             background: linear-gradient(to bottom, transparent 0%, rgba(96, 165, 250, 0.3) 20%, rgba(96, 165, 250, 0.6) 50%, rgba(96, 165, 250, 0.3) 80%, transparent 100%);
             border-radius: 2px;
         }
+        
         .vertical-nav-item {
             display: flex;
             align-items: center;
@@ -64,7 +103,7 @@
             padding: 1.5rem 2rem;
             margin: 0.5rem 0;
             border-radius: 0;
-            font-size: 1.25rem;
+            font-size: clamp(1rem, 1.25rem, 1.5rem); /* Responsive font size */
             font-weight: 600;
             color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
@@ -74,6 +113,7 @@
             position: relative;
             overflow: hidden;
         }
+        
         .vertical-nav-item::before {
             content: '';
             position: absolute;
@@ -85,15 +125,18 @@
             transition: width 0.4s ease;
             z-index: -1;
         }
+        
         .vertical-nav-item:hover::before {
             width: 100%;
         }
+        
         .vertical-nav-item:hover {
             color: white;
             transform: translateX(-10px);
             border-left-color: rgba(255, 255, 255, 0.8);
             padding-left: 2.5rem;
         }
+        
         .vertical-nav-item.active {
             color: white;
             border-left-color: #60a5fa;
@@ -101,20 +144,26 @@
             transform: translateX(-10px);
             padding-left: 2.5rem;
         }
+        
         .vertical-nav-item.active::before {
             width: 100%;
         }
+        
         .nav-icon {
             width: 24px;
             height: 24px;
             margin-right: 1rem;
             opacity: 0.8;
             transition: opacity 0.3s ease;
+            flex-shrink: 0;
         }
+        
         .vertical-nav-item:hover .nav-icon,
         .vertical-nav-item.active .nav-icon {
             opacity: 1;
         }
+        
+        /* Enhanced Mobile Navigation */
         .mobile-nav-toggle {
             position: fixed;
             top: 2rem;
@@ -129,7 +178,15 @@
             justify-content: center;
             box-shadow: 0 10px 25px rgba(30, 64, 175, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
+        
+        .mobile-nav-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 35px rgba(30, 64, 175, 0.4);
+        }
+        
         .mobile-nav-menu {
             position: fixed;
             top: 0;
@@ -138,6 +195,7 @@
             height: 100vh;
             background: linear-gradient(135deg, rgba(30, 58, 138, 0.98) 0%, rgba(30, 64, 175, 0.98) 100%);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             z-index: 55;
             display: flex;
             flex-direction: column;
@@ -146,34 +204,41 @@
             transform: translateX(100%);
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        
         .mobile-nav-menu.active {
             transform: translateX(0);
         }
+        
         .mobile-nav-item {
             display: flex;
             align-items: center;
             padding: 1.5rem 2rem;
             margin: 0.8rem 0;
             border-radius: 12px;
-            font-size: 1.5rem;
+            font-size: clamp(1.25rem, 1.5rem, 1.75rem);
             font-weight: 600;
             color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
             transition: all 0.3s ease;
             text-align: center;
-            min-width: 250px;
+            min-width: min(250px, 80vw);
             border: 2px solid rgba(255, 255, 255, 0.1);
         }
+        
         .mobile-nav-item:hover {
             background: rgba(255, 255, 255, 0.1);
             transform: scale(1.05);
             color: white;
             border-color: rgba(255, 255, 255, 0.3);
         }
+        
+        /* Enhanced Content Wrapper with Better Responsive Design */
         .content-wrapper {
-            margin-right: 277px;
+            margin-right: var(--nav-width-xl);
             position: relative;
+            transition: margin-right 0.3s ease;
         }
+        
         .content-wrapper::after {
             content: '';
             position: absolute;
@@ -183,7 +248,55 @@
             width: 1px;
             background: linear-gradient(to bottom, transparent 0%, rgba(30, 64, 175, 0.1) 20%, rgba(30, 64, 175, 0.2) 50%, rgba(30, 64, 175, 0.1) 80%, transparent 100%);
         }
-        @media (max-width: 1280px) {
+        
+        /* Enhanced Responsive Design with Multiple Breakpoints */
+        
+        /* Extra Large Screens (1920px+) */
+        @media (min-width: 1920px) {
+            :root {
+                --nav-width-xl: 320px;
+                --content-padding-xl: 3rem;
+                --section-heading-xl: 3.5rem;
+            }
+        }
+        
+        /* Large Screens (1536px - 1919px) */
+        @media (max-width: 1919px) and (min-width: 1536px) {
+            :root {
+                --nav-width-xl: 300px;
+                --content-padding-xl: 2.5rem;
+            }
+        }
+        
+        /* Large Desktop (1280px - 1535px) */
+        @media (max-width: 1535px) and (min-width: 1280px) {
+            .vertical-nav {
+                width: var(--nav-width-lg);
+                padding: var(--content-padding-lg);
+            }
+            .content-wrapper {
+                margin-right: var(--nav-width-lg);
+            }
+        }
+        
+        /* Medium Desktop (1024px - 1279px) */
+        @media (max-width: 1279px) and (min-width: 1024px) {
+            .vertical-nav {
+                width: var(--nav-width-md);
+                padding: var(--content-padding-md);
+                right: 0.5rem;
+            }
+            .content-wrapper {
+                margin-right: var(--nav-width-md);
+            }
+            .vertical-nav-item {
+                padding: 1.25rem 1.5rem;
+                font-size: 1.125rem;
+            }
+        }
+        
+        /* Tablet and Small Desktop (768px - 1023px) */
+        @media (max-width: 1023px) {
             .vertical-nav {
                 display: none;
             }
@@ -193,7 +306,37 @@
             .content-wrapper::after {
                 display: none;
             }
+            .mobile-nav-toggle {
+                display: flex;
+            }
         }
+        
+        /* Mobile Landscape (640px - 767px) */
+        @media (max-width: 767px) and (orientation: landscape) {
+            .mobile-nav-item {
+                padding: 1rem 1.5rem;
+                margin: 0.5rem 0;
+                font-size: 1.25rem;
+            }
+        }
+        
+        /* Mobile Portrait (320px - 639px) */
+        @media (max-width: 639px) {
+            .mobile-nav-toggle {
+                width: 50px;
+                height: 50px;
+                top: 1.5rem;
+                right: 1.5rem;
+            }
+            .mobile-nav-item {
+                padding: 1.25rem 1.5rem;
+                margin: 0.6rem 0;
+                font-size: 1.125rem;
+                min-width: min(200px, 75vw);
+            }
+        }
+        
+        /* Other styles remain the same... */
         .nav-link {
             padding: 0.75rem 1.5rem;
             border-radius: 0.5rem;
@@ -202,18 +345,22 @@
             color: #64748b;
             transition: all 0.3s ease;
         }
+        
         .nav-link:hover {
             background-color: #f1f5f9;
             color: #1e40af;
             transform: translateY(-1px);
         }
+        
         .active-nav-link {
             background-color: #1e40af;
             color: white;
         }
+        
+        /* Enhanced Typography with Better Responsive Scaling */
         .section-heading {
             font-family: 'Playfair Display', serif;
-            font-size: 3rem;
+            font-size: clamp(var(--section-heading-sm), var(--section-heading-lg), var(--section-heading-xl));
             font-weight: 700;
             text-align: left;
             color: #1e293b;
@@ -221,32 +368,37 @@
             max-width: 1280px;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.2;
         }
+        
         .section-subheading {
             margin-top: 1rem;
             max-width: 48rem;
             text-align: center;
             margin-left: auto;
             margin-right: auto;
-            font-size: 1.125rem;
+            font-size: clamp(1rem, 1.125rem, 1.25rem);
             color: #64748b;
             line-height: 1.8;
         }
+        
         .section-subheading-full {
             margin-top: 1rem;
             max-width: 1280px;
             margin-left: auto;
             margin-right: auto;
             text-align: left;
-            font-size: 1.125rem;
+            font-size: clamp(1rem, 1.125rem, 1.25rem);
             color: #64748b;
             line-height: 1.8;
         }
+        
         .section-content {
             max-width: 1280px;
             margin-left: auto;
             margin-right: auto;
         }
+        
         .cta-button {
             display: inline-block;
             background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
@@ -258,20 +410,24 @@
             transition: all 0.3s ease;
             box-shadow: 0 10px 25px rgba(30, 64, 175, 0.3);
         }
+        
         .cta-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 15px 35px rgba(30, 64, 175, 0.4);
         }
+        
         .timeline-item {
             position: relative;
             padding-left: 2.5rem;
             padding-bottom: 2rem;
             border-left: 2px solid #e2e8f0;
         }
+        
         .timeline-item:last-child {
             border-left: 2px solid transparent;
             padding-bottom: 0;
         }
+        
         .timeline-marker {
             position: absolute;
             left: -0.5rem;
@@ -282,6 +438,7 @@
             border-radius: 9999px;
             box-shadow: 0 0 0 4px rgba(30, 64, 175, 0.1);
         }
+        
         .skill-tag {
             background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
             color: #1e40af;
@@ -291,6 +448,7 @@
             font-weight: 500;
             border: 1px solid rgba(30, 64, 175, 0.1);
         }
+        
         .content-card {
             background: white;
             border: 1px solid #e2e8f0;
@@ -299,10 +457,12 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
         }
+        
         .content-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
+        
         .contact-card {
             background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
             color: white;
@@ -311,6 +471,7 @@
             text-align: center;
             box-shadow: 0 10px 25px rgba(30, 64, 175, 0.3);
         }
+        
         .publication-item {
             border-left: 4px solid #1e40af;
             padding-left: 1.5rem;
@@ -319,9 +480,10 @@
             padding: 1.5rem;
             border-radius: 0.5rem;
         }
+        
         .hero-title {
             font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
+            font-size: clamp(2.5rem, 3.5rem, 4rem);
             font-weight: 800;
             line-height: 1.1;
             background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
@@ -329,25 +491,45 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+        
         .floating-card {
             animation: float 6s ease-in-out infinite;
         }
+        
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
         }
+        
         .gradient-text {
             background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+        
+        /* Cross-Browser Compatibility Fixes */
+        @supports not (backdrop-filter: blur(20px)) {
+            .glass-effect,
+            .vertical-nav,
+            .mobile-nav-menu {
+                background: rgba(255, 255, 255, 0.98);
+            }
+        }
+        
+        /* High DPI Display Optimizations */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .nav-icon {
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
+            }
+        }
     </style>
 </head>
 <body class="antialiased">
 
     <!-- Vertical Navigation (Desktop) -->
-    <nav class="vertical-nav hidden xl:flex">
+    <nav class="vertical-nav hidden lg:flex">
         <a href="#hero" class="vertical-nav-item" data-section="hero">
             <span class="nav-icon">🏠</span>
             Home
@@ -379,7 +561,7 @@
     </nav>
 
     <!-- Mobile Navigation Toggle -->
-    <button class="mobile-nav-toggle xl:hidden" id="mobile-nav-toggle">
+    <button class="mobile-nav-toggle lg:hidden" id="mobile-nav-toggle">
         <div id="hamburger" class="space-y-1">
             <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
             <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
@@ -388,7 +570,7 @@
     </button>
 
     <!-- Mobile Navigation Menu -->
-    <nav class="mobile-nav-menu xl:hidden" id="mobile-nav-menu">
+    <nav class="mobile-nav-menu lg:hidden" id="mobile-nav-menu">
         <a href="#hero" class="mobile-nav-item" data-section="hero">
             <span class="nav-icon">🏠</span>
             Home
@@ -426,7 +608,7 @@
         <!-- Hero Section with Contact Info -->
         <section id="hero" class="hero-bg relative overflow-hidden">
             <div class="absolute inset-0 bg-black opacity-10"></div>
-            <div class="relative w-full pl-8 pr-8 xl:pr-72 py-20 md:py-24">
+            <div class="relative w-full pl-8 pr-8 lg:pr-72 py-20 md:py-24">
                 <div class="section-content">
                     <div class="grid md:grid-cols-2 gap-16 items-center">
                     <div class="text-white">
@@ -474,7 +656,7 @@
 
         <!-- About Section -->
         <section id="about" class="py-16 bg-white">
-            <div class="w-full pl-8 pr-8 xl:pr-72">
+            <div class="w-full pl-8 pr-8 lg:pr-72">
                 <div class="section-content">
                     <h2 class="section-heading">About Me</h2>
                     <p class="section-subheading-full">
@@ -638,7 +820,7 @@
 
         <!-- Flagship Projects -->
         <section id="projects" class="py-16 bg-gray-50">
-            <div class="w-full pl-8 pr-8 xl:pr-72">
+            <div class="w-full pl-8 pr-8 lg:pr-72">
                 <div class="section-content">
                     <h2 class="section-heading">Flagship AI Projects</h2>
                     <p class="section-subheading-full">Practical AI solutions developed and deployed at Intel, Samsung, and for retail clients, focusing on automation, content moderation, and intelligent document processing. Projects demonstrate proven ROI with measurable outcomes including 60% cycle time reduction at Intel and $1M operational savings for a global retail client. Each platform addresses specific business challenges through computer vision, generative AI, and machine learning implementations. Solutions range from internal enterprise tools to customer-facing systems with real-world production deployment experience.</p>
@@ -701,7 +883,7 @@
 
         <!-- Research Areas -->
         <section id="research" class="py-16 bg-gray-50">
-            <div class="w-full pl-8 pr-8 xl:pr-72">
+            <div class="w-full pl-8 pr-8 lg:pr-72">
                 <div class="section-content">
                     <h2 class="section-heading">Research & Thought Leadership</h2>
                     <p class="section-subheading-full">
@@ -799,7 +981,7 @@
 
         <!-- Patents Section -->
         <section id="patents" class="py-16 bg-white">
-            <div class="w-full pl-8 pr-8 xl:pr-72">
+            <div class="w-full pl-8 pr-8 lg:pr-72">
                 <div class="section-content">
                     <h2 class="section-heading">Innovation Portfolio</h2>
                     <p class="section-subheading-full">
@@ -852,7 +1034,7 @@
 
         <!-- Publications Section -->
         <section id="publications" class="py-16 bg-gray-50">
-            <div class="w-full pl-8 pr-8 xl:pr-72">
+            <div class="w-full pl-8 pr-8 lg:pr-72">
                 <div class="section-content">
                     <h2 class="section-heading">Academic Excellence</h2>
                     <p class="section-subheading-full">
@@ -922,7 +1104,7 @@
         <!-- Contact Section -->
         <section id="contact" class="py-16 hero-bg relative overflow-hidden">
             <div class="absolute inset-0 bg-black opacity-20"></div>
-            <div class="relative w-full pl-8 pr-8 xl:pr-72">
+            <div class="relative w-full pl-8 pr-8 lg:pr-72">
                 <div class="section-content">
                     <h2 class="section-heading text-white">Let's Collaborate</h2>
                     <p class="section-subheading-full text-blue-100">
@@ -959,7 +1141,7 @@
     </div> <!-- End Content Wrapper -->
 
     <footer class="bg-slate-900 text-white py-8">
-        <div class="w-full pl-8 pr-8 xl:pr-72 text-center">
+        <div class="w-full pl-8 pr-8 lg:pr-72 text-center">
             <div class="section-content">
                 <p class="text-slate-400">&copy; 2025 Dr. Amioy Kumar. All rights reserved.</p>
                 <p class="text-slate-500 text-sm mt-2">AI Solution Architect | MS(R), PhD, IIT Delhi</p>
