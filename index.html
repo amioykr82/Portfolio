@@ -483,13 +483,35 @@
         
         .hero-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 3.5rem, 4rem);
+            font-size: clamp(1.75rem, 5vw, 3.5rem);
             font-weight: 800;
-            line-height: 1.1;
+            line-height: 1.2;
             background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            word-break: keep-all;
+            hyphens: none;
+        }
+        
+        /* Enhanced responsive typography for hero section */
+        @media (max-width: 1280px) {
+            .hero-title {
+                font-size: clamp(1.5rem, 4vw, 2.8rem);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: clamp(1.25rem, 6vw, 2.2rem);
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: clamp(1.1rem, 7vw, 1.8rem);
+            }
         }
         
         .floating-card {
@@ -608,10 +630,10 @@
         <!-- Hero Section with Contact Info -->
         <section id="hero" class="hero-bg relative overflow-hidden">
             <div class="absolute inset-0 bg-black opacity-10"></div>
-            <div class="relative w-full pl-8 pr-8 lg:pr-72 py-20 md:py-24">
+            <div class="relative w-full pl-4 pr-4 lg:pl-8 lg:pr-72 py-20 md:py-24">
                 <div class="section-content">
-                    <div class="grid md:grid-cols-2 gap-16 items-center">
-                    <div class="text-white">
+                    <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+                    <div class="text-white order-2 lg:order-1">
                         <h1 class="hero-title mb-6">Dr. Amioy Kumar</h1>
                         <p class="text-2xl font-light mb-4 text-blue-100">AI Solution Architect</p>
                         <p class="text-xl mb-8 text-blue-100">MS(R), PhD, IIT Delhi</p>
@@ -642,8 +664,8 @@
                         </div>
                     </div>
                     
-                    <div class="flex justify-center">
-                        <div class="floating-card w-80 h-80 relative">
+                    <div class="flex justify-center order-1 lg:order-2">
+                        <div class="floating-card w-64 h-64 lg:w-80 lg:h-80 relative">
                             <img id="profile-photo" src="./WhatsApp%20Image%202025-06-27%20at%2015.13.34.jpeg" alt="Dr. Amioy Kumar" class="rounded-full w-full h-full object-cover border-8 border-white shadow-2xl" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                             <div class="rounded-full w-full h-full bg-gradient-to-br from-blue-500 to-blue-700 border-8 border-white shadow-2xl flex items-center justify-center text-white text-6xl font-bold" style="display: none;">
                                 AK
