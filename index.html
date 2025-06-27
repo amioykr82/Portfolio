@@ -490,7 +490,8 @@
                             <div class="upload-overlay">
                                 <div class="upload-text">
                                     📷<br>
-                                    Upload Photo
+                                    Change Photo<br>
+                                    <small style="font-size: 10px; opacity: 0.8;">(Browser only)</small>
                                 </div>
                             </div>
                             <input type="file" id="photo-upload" accept="image/*" style="display: none;">
@@ -1069,8 +1070,16 @@
             const photoContainer = document.querySelector('.photo-container');
             const photoUpload = document.getElementById('photo-upload');
             const profilePhoto = document.getElementById('profile-photo');
+            const defaultPhotoSrc = profilePhoto ? profilePhoto.src : '';
             
             if (photoContainer && photoUpload && profilePhoto) {
+                // Load saved photo from localStorage on page load
+                const savedPhoto = localStorage.getItem('profilePhoto');
+                if (savedPhoto) {
+                    profilePhoto.src = savedPhoto;
+                    profilePhoto.alt = 'Your uploaded photo';
+                }
+                
                 photoContainer.addEventListener('click', () => {
                     photoUpload.click();
                 });
@@ -1080,7 +1089,7 @@
                     if (file) {
                         // Validate file type
                         if (!file.type.startsWith('image/')) {
-                            alert('Please select a valid image file.');
+                            alert('Please select a valid image file (JPG, PNG, GIF, etc.).');
                             return;
                         }
                         
@@ -1095,19 +1104,31 @@
                             profilePhoto.src = e.target.result;
                             profilePhoto.alt = 'Your uploaded photo';
                             
-                            // Store in localStorage for persistence
-                            localStorage.setItem('profilePhoto', e.target.result);
+                            // Store in localStorage for persistence (browser only)
+                            try {
+                                localStorage.setItem('profilePhoto', e.target.result);
+                                console.log('Photo saved to browser storage');
+                            } catch (error) {
+                                console.warn('Could not save photo to browser storage:', error);
+                            }
+                        };
+                        reader.onerror = () => {
+                            alert('Error reading the image file. Please try again.');
                         };
                         reader.readAsDataURL(file);
                     }
                 });
                 
-                // Load saved photo from localStorage on page load
-                const savedPhoto = localStorage.getItem('profilePhoto');
-                if (savedPhoto) {
-                    profilePhoto.src = savedPhoto;
-                    profilePhoto.alt = 'Your uploaded photo';
-                }
+                // Add double-click to reset to original photo
+                photoContainer.addEventListener('dblclick', (e) => {
+                    e.stopPropagation();
+                    if (defaultPhotoSrc) {
+                        profilePhoto.src = defaultPhotoSrc;
+                        profilePhoto.alt = 'Dr. Amioy Kumar';
+                        localStorage.removeItem('profilePhoto');
+                        console.log('Photo reset to original');
+                    }
+                });
             }
 
             // Initialize first section as active
