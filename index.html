@@ -630,45 +630,95 @@
         <!-- Hero Section with Contact Info -->
         <section id="hero" class="hero-bg relative overflow-hidden">
             <div class="absolute inset-0 bg-black opacity-10"></div>
-            <div class="relative w-full pl-4 pr-4 lg:pl-8 lg:pr-72 py-20 md:py-24">
+            <div class="relative w-full pl-4 pr-4 lg:pl-8 lg:pr-8 py-20 md:py-24">
                 <div class="section-content">
-                    <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-                    <div class="text-white order-2 lg:order-1">
-                        <h1 class="hero-title mb-6">Dr. Amioy Kumar</h1>
-                        <p class="text-2xl font-light mb-4 text-blue-100">AI Solution Architect</p>
-                        <p class="text-xl mb-8 text-blue-100">MS(R), PhD, IIT Delhi</p>
-                        
-                        <!-- Contact Cards -->
-                        <div class="grid md:grid-cols-2 gap-4 mb-8">
-                            <div class="contact-card">
-                                <div class="text-sm font-medium mb-1">� Email</div>
-                                <a href="mailto:amioy.iitd@gmail.com" class="text-blue-100 hover:text-white">amioy.iitd@gmail.com</a>
+                    <!-- Desktop Layout: 3 columns - Content | Image | Space for Nav -->
+                    <div class="hidden lg:grid lg:grid-cols-12 gap-8 items-center h-full">
+                        <!-- Left Content Column (spans 6 columns) -->
+                        <div class="lg:col-span-6 text-white">
+                            <h1 class="hero-title mb-6">Dr. Amioy Kumar</h1>
+                            <p class="text-2xl font-light mb-4 text-blue-100">AI Solution Architect</p>
+                            <p class="text-xl mb-8 text-blue-100">MS(R), PhD, IIT Delhi</p>
+                            
+                            <!-- Contact Cards -->
+                            <div class="grid md:grid-cols-2 gap-4 mb-8">
+                                <div class="contact-card">
+                                    <div class="text-sm font-medium mb-1">✉️ Email</div>
+                                    <a href="mailto:amioy.iitd@gmail.com" class="text-blue-100 hover:text-white">amioy.iitd@gmail.com</a>
+                                </div>
+                                <div class="contact-card">
+                                    <div class="text-sm font-medium mb-1">📱 Phone</div>
+                                    <a href="tel:+919971382503" class="text-blue-100 hover:text-white">+91-9971382503</a>
+                                </div>
                             </div>
-                            <div class="contact-card">
-                                <div class="text-sm font-medium mb-1">📱 Phone</div>
-                                <a href="tel:+919971382503" class="text-blue-100 hover:text-white">+91-9971382503</a>
+                            
+                            <!-- Social Links -->
+                            <div class="flex flex-wrap gap-4">
+                                <a href="https://www.linkedin.com/in/amioykr/" target="_blank" class="bg-white bg-opacity-20 px-4 py-2 rounded-lg text-white hover:bg-opacity-30 transition-all">
+                                    LinkedIn Profile
+                                </a>
+                                <a href="https://github.com/amioykr82" target="_blank" class="bg-white bg-opacity-20 px-4 py-2 rounded-lg text-white hover:bg-opacity-30 transition-all">
+                                    GitHub Page
+                                </a>
+                                <a href="https://scholar.google.com/citations?hl=en&user=F5pQFrUAAAAJ" target="_blank" class="bg-white bg-opacity-20 px-4 py-2 rounded-lg text-white hover:bg-opacity-30 transition-all">
+                                    Google Scholar
+                                </a>
                             </div>
                         </div>
                         
-                        <!-- Social Links -->
-                        <div class="flex flex-wrap gap-4">
-                            <a href="https://www.linkedin.com/in/amioykr/" target="_blank" class="bg-white bg-opacity-20 px-4 py-2 rounded-lg text-white hover:bg-opacity-30 transition-all">
-                                LinkedIn Profile
-                            </a>
-                            <a href="https://github.com/amioykr82" target="_blank" class="bg-white bg-opacity-20 px-4 py-2 rounded-lg text-white hover:bg-opacity-30 transition-all">
-                                GitHub Page
-                            </a>
-                            <a href="https://scholar.google.com/citations?hl=en&user=F5pQFrUAAAAJ" target="_blank" class="bg-white bg-opacity-20 px-4 py-2 rounded-lg text-white hover:bg-opacity-30 transition-all">
-                                Google Scholar
-                            </a>
+                        <!-- Center Image Column (spans 4 columns) -->
+                        <div class="lg:col-span-4 flex justify-center">
+                            <div class="floating-card w-80 h-80 relative">
+                                <img id="profile-photo" src="./WhatsApp%20Image%202025-06-27%20at%2015.13.34.jpeg" alt="Dr. Amioy Kumar" class="rounded-full w-full h-full object-cover border-8 border-white shadow-2xl" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="rounded-full w-full h-full bg-gradient-to-br from-blue-500 to-blue-700 border-8 border-white shadow-2xl flex items-center justify-center text-white text-6xl font-bold" style="display: none;">
+                                    AK
+                                </div>
+                            </div>
                         </div>
+                        
+                        <!-- Right Space for Navigation (spans 2 columns) -->
+                        <div class="lg:col-span-2"></div>
                     </div>
                     
-                    <div class="flex justify-center order-1 lg:order-2">
-                        <div class="floating-card w-64 h-64 lg:w-80 lg:h-80 relative">
-                            <img id="profile-photo" src="./WhatsApp%20Image%202025-06-27%20at%2015.13.34.jpeg" alt="Dr. Amioy Kumar" class="rounded-full w-full h-full object-cover border-8 border-white shadow-2xl" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="rounded-full w-full h-full bg-gradient-to-br from-blue-500 to-blue-700 border-8 border-white shadow-2xl flex items-center justify-center text-white text-6xl font-bold" style="display: none;">
-                                AK
+                    <!-- Mobile/Tablet Layout: 2 columns -->
+                    <div class="lg:hidden grid gap-8 items-center">
+                        <div class="flex justify-center order-1">
+                            <div class="floating-card w-64 h-64 relative">
+                                <img id="profile-photo-mobile" src="./WhatsApp%20Image%202025-06-27%20at%2015.13.34.jpeg" alt="Dr. Amioy Kumar" class="rounded-full w-full h-full object-cover border-8 border-white shadow-2xl" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="rounded-full w-full h-full bg-gradient-to-br from-blue-500 to-blue-700 border-8 border-white shadow-2xl flex items-center justify-center text-white text-6xl font-bold" style="display: none;">
+                                    AK
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-white order-2 text-center">
+                            <h1 class="hero-title mb-6">Dr. Amioy Kumar</h1>
+                            <p class="text-2xl font-light mb-4 text-blue-100">AI Solution Architect</p>
+                            <p class="text-xl mb-8 text-blue-100">MS(R), PhD, IIT Delhi</p>
+                            
+                            <!-- Contact Cards -->
+                            <div class="grid md:grid-cols-2 gap-4 mb-8">
+                                <div class="contact-card">
+                                    <div class="text-sm font-medium mb-1">✉️ Email</div>
+                                    <a href="mailto:amioy.iitd@gmail.com" class="text-blue-100 hover:text-white">amioy.iitd@gmail.com</a>
+                                </div>
+                                <div class="contact-card">
+                                    <div class="text-sm font-medium mb-1">📱 Phone</div>
+                                    <a href="tel:+919971382503" class="text-blue-100 hover:text-white">+91-9971382503</a>
+                                </div>
+                            </div>
+                            
+                            <!-- Social Links -->
+                            <div class="flex flex-wrap gap-4 justify-center">
+                                <a href="https://www.linkedin.com/in/amioykr/" target="_blank" class="bg-white bg-opacity-20 px-4 py-2 rounded-lg text-white hover:bg-opacity-30 transition-all">
+                                    LinkedIn Profile
+                                </a>
+                                <a href="https://github.com/amioykr82" target="_blank" class="bg-white bg-opacity-20 px-4 py-2 rounded-lg text-white hover:bg-opacity-30 transition-all">
+                                    GitHub Page
+                                </a>
+                                <a href="https://scholar.google.com/citations?hl=en&user=F5pQFrUAAAAJ" target="_blank" class="bg-white bg-opacity-20 px-4 py-2 rounded-lg text-white hover:bg-opacity-30 transition-all">
+                                    Google Scholar
+                                </a>
                             </div>
                         </div>
                     </div>
