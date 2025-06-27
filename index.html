@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Amioy Kumar - AI Solution Architect | IIT Delhi Alumni</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- 
+    Chosen Palette: "Corporate Blue" - A clean and professional theme using a light gray (slate-50) background, dark text for readability (slate-800), and a strong blue (blue-600) as the accent for calls-to-action and highlights.
+    Application Structure Plan: The SPA is redesigned as an executive-level portfolio. The structure is: 1. About Me (New intro with photo). 2. Flagship Platforms (Detailed Case Studies). 3. Thought Leadership (Medium Articles). 4. Career Journey & Credentials. 5. Contact. This structure introduces the person first, then impresses with impact (products), and builds credibility (articles & career), which is a highly effective flow for engaging senior leaders.
+    Visualization & Content Choices: - Product Showcase -> Goal: Pitch to executive -> Viz: Detailed two-column layout for each product with problem/solution/impact sections. Interaction: External links to GitHub. Justification: Provides the depth a CTO would want to see. - Medium Articles -> Goal: Establish thought leadership -> Viz: Clean, publication-style list. Interaction: External links. Justification: Mimics platforms like Google Scholar for a professional feel. - Skills -> Goal: Organize -> Viz: Tag layout. Justification: Easy to scan.
+    CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #1e293b;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #3b82f6 100%);
+        }
+        .vertical-nav {
+            position: fixed;
+            right: 1rem;
+            top: 0;
+            height: 100vh;
+            width: 260px;
+            z-index: 40;
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.95) 0%, rgba(30, 64, 175, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 2rem;
+            box-shadow: -10px 0 50px rgba(0, 0, 0, 0.2);
+        }
+        .vertical-nav::before {
+            content: '';
+            position: absolute;
+            left: -16px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 2px;
+            height: 60%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(96, 165, 250, 0.3) 20%, rgba(96, 165, 250, 0.6) 50%, rgba(96, 165, 250, 0.3) 80%, transparent 100%);
+            border-radius: 2px;
+        }
+        .vertical-nav-item {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            margin: 0.5rem 0;
+            border-radius: 0;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: left;
+            border-left: 4px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        .vertical-nav-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            transition: width 0.4s ease;
+            z-index: -1;
+        }
+        .vertical-nav-item:hover::before {
+            width: 100%;
+        }
+        .vertical-nav-item:hover {
+            color: white;
+            transform: translateX(-10px);
+            border-left-color: rgba(255, 255, 255, 0.8);
+            padding-left: 2.5rem;
+        }
+        .vertical-nav-item.active {
+            color: white;
+            border-left-color: #60a5fa;
+            background: linear-gradient(90deg, rgba(96, 165, 250, 0.2) 0%, rgba(96, 165, 250, 0.05) 100%);
+            transform: translateX(-10px);
+            padding-left: 2.5rem;
+        }
+        .vertical-nav-item.active::before {
+            width: 100%;
+        }
+        .nav-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 1rem;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        .vertical-nav-item:hover .nav-icon,
+        .vertical-nav-item.active .nav-icon {
+            opacity: 1;
+        }
+        .mobile-nav-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 60;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            border-radius: 12px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(30, 64, 175, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .mobile-nav-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.98) 0%, rgba(30, 64, 175, 0.98) 100%);
+            backdrop-filter: blur(20px);
+            z-index: 55;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .mobile-nav-menu.active {
+            transform: translateX(0);
+        }
+        .mobile-nav-item {
+            display: flex;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            margin: 0.8rem 0;
+            border-radius: 12px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-align: center;
+            min-width: 250px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        .mobile-nav-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        .content-wrapper {
+            margin-right: 277px;
+            position: relative;
+        }
+        .content-wrapper::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent 0%, rgba(30, 64, 175, 0.1) 20%, rgba(30, 64, 175, 0.2) 50%, rgba(30, 64, 175, 0.1) 80%, transparent 100%);
+        }
+        @media (max-width: 1280px) {
+            .vertical-nav {
+                display: none;
+            }
+            .content-wrapper {
+                margin-right: 0;
+            }
+            .content-wrapper::after {
+                display: none;
+            }
+        }
+        .nav-link {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #64748b;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            background-color: #f1f5f9;
+            color: #1e40af;
+            transform: translateY(-1px);
+        }
+        .active-nav-link {
+            background-color: #1e40af;
+            color: white;
+        }
+        .section-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: left;
+            color: #1e293b;
+            margin-bottom: 1rem;
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .section-subheading {
+            margin-top: 1rem;
+            max-width: 48rem;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.125rem;
+            color: #64748b;
+            line-height: 1.8;
+        }
+        .section-subheading-full {
+            margin-top: 1rem;
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+            font-size: 1.125rem;
+            color: #64748b;
+            line-height: 1.8;
+        }
+        .section-content {
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            font-weight: 600;
+            font-size: 0.875rem;
+            padding: 1rem 2rem;
+            border-radius: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(30, 64, 175, 0.3);
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(30, 64, 175, 0.4);
+        }
+        .timeline-item {
+            position: relative;
+            padding-left: 2.5rem;
+            padding-bottom: 2rem;
+            border-left: 2px solid #e2e8f0;
+        }
+        .timeline-item:last-child {
+            border-left: 2px solid transparent;
+            padding-bottom: 0;
+        }
+        .timeline-marker {
+            position: absolute;
+            left: -0.5rem;
+            top: 0.25rem;
+            height: 1rem;
+            width: 1rem;
+            background-color: #1e40af;
+            border-radius: 9999px;
+            box-shadow: 0 0 0 4px rgba(30, 64, 175, 0.1);
+        }
+        .skill-tag {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            color: #1e40af;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border: 1px solid rgba(30, 64, 175, 0.1);
+        }
+        .content-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        .content-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        .upload-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+        }
+        .photo-container:hover .upload-overlay {
+            opacity: 1;
+        }
+        .upload-text {
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+        }
+        .contact-card {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            border-radius: 1rem;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(30, 64, 175, 0.3);
+        }
+        .publication-item {
+            border-left: 4px solid #1e40af;
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+            background: rgba(30, 64, 175, 0.02);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .floating-card {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Vertical Navigation (Desktop) -->
+    <nav class="vertical-nav hidden xl:flex">
+        <a href="#hero" class="vertical-nav-item" data-section="hero">
+            <span class="nav-icon">🏠</span>
+            Home
+        </a>
+        <a href="#about" class="vertical-nav-item" data-section="about">
+            <span class="nav-icon">👨‍💼</span>
+            About
+        </a>
+        <a href="#projects" class="vertical-nav-item" data-section="projects">
+            <span class="nav-icon">�</span>
+            Projects
+        </a>
+        <a href="#research" class="vertical-nav-item" data-section="research">
+            <span class="nav-icon">�</span>
+            Research
+        </a>
+        <a href="#patents" class="vertical-nav-item" data-section="patents">
+            <span class="nav-icon">�</span>
+            Patents
+        </a>
+        <a href="#publications" class="vertical-nav-item" data-section="publications">
+            <span class="nav-icon">�</span>
+            Publications
+        </a>
+        <a href="#contact" class="vertical-nav-item" data-section="contact">
+            <span class="nav-icon">📧</span>
+            Contact
+        </a>
+    </nav>
+
+    <!-- Mobile Navigation Toggle -->
+    <button class="mobile-nav-toggle xl:hidden" id="mobile-nav-toggle">
+        <div id="hamburger" class="space-y-1">
+            <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
+            <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
+            <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
+        </div>
+    </button>
+
+    <!-- Mobile Navigation Menu -->
+    <nav class="mobile-nav-menu xl:hidden" id="mobile-nav-menu">
+        <a href="#hero" class="mobile-nav-item" data-section="hero">
+            <span class="nav-icon">🏠</span>
+            Home
+        </a>
+        <a href="#about" class="mobile-nav-item" data-section="about">
+            <span class="nav-icon">👨‍💼</span>
+            About
+        </a>
+        <a href="#projects" class="mobile-nav-item" data-section="projects">
+            <span class="nav-icon">�</span>
+            Projects
+        </a>
+        <a href="#research" class="mobile-nav-item" data-section="research">
+            <span class="nav-icon">�</span>
+            Research
+        </a>
+        <a href="#patents" class="mobile-nav-item" data-section="patents">
+            <span class="nav-icon">�</span>
+            Patents
+        </a>
+        <a href="#publications" class="mobile-nav-item" data-section="publications">
+            <span class="nav-icon">�</span>
+            Publications
+        </a>
+        <a href="#contact" class="mobile-nav-item" data-section="contact">
+            <span class="nav-icon">📧</span>
+            Contact
+        </a>
+    </nav>
+
+    <!-- Content Wrapper -->
+    <div class="content-wrapper">
+
+    <main>
+        <!-- Hero Section with Contact Info -->
+        <section id="hero" class="hero-bg relative overflow-hidden">
+            <div class="absolute inset-0 bg-black opacity-10"></div>
+            <div class="relative w-full pl-8 pr-8 xl:pr-72 py-20 md:py-24">
+                <div class="section-content">
+                    <div class="grid md:grid-cols-2 gap-16 items-center">
+                    <div class="text-white">
+                        <h1 class="hero-title mb-6">Dr. Amioy Kumar</h1>
+                        <p class="text-2xl font-light mb-4 text-blue-100">AI Solution Architect</p>
+                        <p class="text-xl mb-8 text-blue-100">MS(R), PhD, IIT Delhi</p>
+                        
+                        <!-- Contact Cards -->
+                        <div class="grid md:grid-cols-2 gap-4 mb-8">
+                            <div class="contact-card">
+                                <div class="text-sm font-medium mb-1">� Email</div>
+                                <a href="mailto:amioy.iitd@gmail.com" class="text-blue-100 hover:text-white">amioy.iitd@gmail.com</a>
+                            </div>
+                            <div class="contact-card">
+                                <div class="text-sm font-medium mb-1">📱 Phone</div>
+                                <a href="tel:+919971382503" class="text-blue-100 hover:text-white">+91-9971382503</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Social Links -->
+                        <div class="flex flex-wrap gap-4">
+                            <a href="https://www.linkedin.com/in/amioykr/" target="_blank" class="bg-white bg-opacity-20 px-4 py-2 rounded-lg text-white hover:bg-opacity-30 transition-all">
+                                LinkedIn Profile
+                            </a>
+                            <a href="https://github.com/amioykr82" target="_blank" class="bg-white bg-opacity-20 px-4 py-2 rounded-lg text-white hover:bg-opacity-30 transition-all">
+                                GitHub Page
+                            </a>
+                            <a href="https://scholar.google.com/citations?hl=en&user=F5pQFrUAAAAJ" target="_blank" class="bg-white bg-opacity-20 px-4 py-2 rounded-lg text-white hover:bg-opacity-30 transition-all">
+                                Google Scholar
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-center">
+                        <div class="floating-card w-80 h-80 photo-container relative">
+                            <img id="profile-photo" src="https://storage.googleapis.com/project-marc-test-public/20231224_124252.jpg-06a76197-4ac2-43db-a642-b26caf32831b" alt="Dr. Amioy Kumar" class="rounded-full w-full h-full object-cover border-8 border-white shadow-2xl">
+                            <div class="upload-overlay">
+                                <div class="upload-text">
+                                    📷<br>
+                                    Upload Photo
+                                </div>
+                            </div>
+                            <input type="file" id="photo-upload" accept="image/*" style="display: none;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-16 bg-white">
+            <div class="w-full pl-8 pr-8 xl:pr-72">
+                <div class="section-content">
+                    <h2 class="section-heading">About Me</h2>
+                    <p class="section-subheading-full">
+                        Senior AI Solution Architect with 15+ years of proven expertise in designing and delivering enterprise-scale AI systems. 
+                        Currently driving AI transformation initiatives at Intel Tech India, with a track record of successful implementations 
+                        across global technology leaders including Samsung and Accenture.
+                    </p>
+                    
+                    <!-- Three Professional Subsections -->
+                    <div class="mt-16 grid lg:grid-cols-3 gap-8">
+                        
+                        <!-- Education Excellence -->
+                        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-xl border border-blue-100 hover:shadow-lg transition-all duration-300">
+                            <div class="flex items-center mb-6">
+                                <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mr-4">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-bold text-slate-800">Academic Excellence</h3>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="border-l-4 border-blue-600 pl-4">
+                                    <p class="font-semibold text-slate-800">PhD, Electrical Engineering</p>
+                                    <p class="text-slate-600 text-sm">Indian Institute of Technology, Delhi</p>
+                                    <p class="text-slate-500 text-xs">Specialization: AI & Biometric Systems</p>
+                                </div>
+                                <div class="border-l-4 border-blue-400 pl-4">
+                                    <p class="font-semibold text-slate-800">MS(R), Electrical Engineering</p>
+                                    <p class="text-slate-600 text-sm">Indian Institute of Technology, Delhi</p>
+                                    <p class="text-slate-500 text-xs">Focus: Machine Learning Algorithms</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Professional Experience -->
+                        <div class="bg-gradient-to-br from-emerald-50 to-teal-50 p-8 rounded-xl border border-emerald-100 hover:shadow-lg transition-all duration-300">
+                            <div class="flex items-center mb-6">
+                                <div class="w-12 h-12 bg-emerald-600 rounded-lg flex items-center justify-center mr-4">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H9m0 0H5m0 0h2M7 7h10M7 11h10M7 15h10"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-bold text-slate-800">Executive Leadership</h3>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="border-l-4 border-emerald-600 pl-4">
+                                    <p class="font-semibold text-slate-800">15+ Years</p>
+                                    <p class="text-slate-600 text-sm">AI Solution Architecture & Engineering Management</p>
+                                </div>
+                                <div class="border-l-4 border-emerald-400 pl-4">
+                                    <p class="font-semibold text-slate-800">Global Experience</p>
+                                    <p class="text-slate-600 text-sm">Intel • Samsung • Accenture</p>
+                                </div>
+                                <div class="border-l-4 border-emerald-300 pl-4">
+                                    <p class="font-semibold text-slate-800">Team Leadership</p>
+                                    <p class="text-slate-600 text-sm">Cross-functional AI teams & product delivery</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Research & Innovation -->
+                        <div class="bg-gradient-to-br from-purple-50 to-violet-50 p-8 rounded-xl border border-purple-100 hover:shadow-lg transition-all duration-300">
+                            <div class="flex items-center mb-6">
+                                <div class="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center mr-4">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-bold text-slate-800">Innovation Impact</h3>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="border-l-4 border-purple-600 pl-4">
+                                    <p class="font-semibold text-slate-800">12+ Patents</p>
+                                    <p class="text-slate-600 text-sm">AI, Biometrics & Power Optimization</p>
+                                </div>
+                                <div class="border-l-4 border-purple-400 pl-4">
+                                    <p class="font-semibold text-slate-800">20+ Publications</p>
+                                    <p class="text-slate-600 text-sm">IEEE, ACM & International Journals</p>
+                                </div>
+                                <div class="border-l-4 border-purple-300 pl-4">
+                                    <p class="font-semibold text-slate-800">Industry Recognition</p>
+                                    <p class="text-slate-600 text-sm">Thought leadership in AI transformation</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Compact Career Timeline -->
+                    <div class="mt-20">
+                        <h3 class="text-2xl font-bold text-slate-800 mb-8">Career Trajectory</h3>
+                        <div class="relative">
+                            <!-- Timeline Line -->
+                            <div class="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-600 via-emerald-500 to-purple-600"></div>
+                            
+                            <!-- Timeline Items -->
+                            <div class="space-y-8">
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm z-10">2017</div>
+                                    <div class="ml-6 flex-grow">
+                                        <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                                            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
+                                                <div>
+                                                    <h4 class="text-lg font-bold text-slate-800">Senior Engineering Manager, Head of AI</h4>
+                                                    <p class="text-blue-600 font-semibold">Intel Tech India</p>
+                                                    <p class="text-slate-600 text-sm mt-1">Leading enterprise AI initiatives & cross-functional teams</p>
+                                                </div>
+                                                <div class="text-right mt-2 lg:mt-0">
+                                                    <span class="text-sm font-medium text-slate-500">2017 - Present</span>
+                                                    <p class="text-xs text-slate-400">7+ years</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 w-12 h-12 bg-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-sm z-10">2015</div>
+                                    <div class="ml-6 flex-grow">
+                                        <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                                            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
+                                                <div>
+                                                    <h4 class="text-lg font-bold text-slate-800">Principal Research Scientist</h4>
+                                                    <p class="text-emerald-600 font-semibold">Accenture India</p>
+                                                    <p class="text-slate-600 text-sm mt-1">Head of Image & Vision Research Division</p>
+                                                </div>
+                                                <div class="text-right mt-2 lg:mt-0">
+                                                    <span class="text-sm font-medium text-slate-500">2015 - 2017</span>
+                                                    <p class="text-xs text-slate-400">2 years</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm z-10">2013</div>
+                                    <div class="ml-6 flex-grow">
+                                        <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                                            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
+                                                <div>
+                                                    <h4 class="text-lg font-bold text-slate-800">Lead Engineer, Advanced Research</h4>
+                                                    <p class="text-purple-600 font-semibold">Samsung India</p>
+                                                    <p class="text-slate-600 text-sm mt-1">AI systems & biometric technology development</p>
+                                                </div>
+                                                <div class="text-right mt-2 lg:mt-0">
+                                                    <span class="text-sm font-medium text-slate-500">2013 - 2015</span>
+                                                    <p class="text-xs text-slate-400">2 years</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Flagship Projects -->
+        <section id="projects" class="py-16 bg-gray-50">
+            <div class="w-full pl-8 pr-8 xl:pr-72">
+                <div class="section-content">
+                    <h2 class="section-heading">Flagship AI Projects</h2>
+                    <p class="section-subheading-full">Practical AI solutions developed and deployed at Intel, Samsung, and for retail clients, focusing on automation, content moderation, and intelligent document processing. Projects demonstrate proven ROI with measurable outcomes including 60% cycle time reduction at Intel and $1M operational savings for a global retail client. Each platform addresses specific business challenges through computer vision, generative AI, and machine learning implementations. Solutions range from internal enterprise tools to customer-facing systems with real-world production deployment experience.</p>
+                    <div class="mt-12 space-y-8">
+                        
+                        <!-- Project 1 -->
+                        <div class="content-card grid md:grid-cols-12 gap-8 items-center">
+                            <div class="md:col-span-1 text-5xl text-center text-blue-600">✍️</div>
+                            <div class="md:col-span-11">
+                                <h3 class="text-2xl font-bold text-slate-800">Product Requirement Generator</h3>
+                                <p class="mt-2 text-slate-600"><strong class="text-slate-900">Problem:</strong> Manual requirement generation from dense technical documents is slow and prone to errors, leading to costly validation escapes. <br><strong class="text-slate-900">Solution:</strong> An intelligent RAG-based tool that parses specifications, understands context, and auto-generates precise, verifiable validation requirements.<br><strong class="text-slate-900">Impact:</strong> Reduced validation cycle time by 60% and saved an estimated $1 million annually at Intel.</p>
+                                <a href="https://github.com/amioykr82/Product-Requirement-Generator" target="_blank" class="text-blue-600 font-semibold mt-4 inline-block hover:text-blue-700">View on GitHub &rarr;</a>
+                            </div>
+                        </div>
+
+                        <!-- Project 2 -->
+                        <div class="content-card grid md:grid-cols-12 gap-8 items-center">
+                            <div class="md:col-span-1 text-5xl text-center text-blue-600">🔬</div>
+                            <div class="md:col-span-11">
+                                <h3 class="text-2xl font-bold text-slate-800">Debug Accelerator Suite</h3>
+                                <p class="mt-2 text-slate-600"><strong class="text-slate-900">Problem:</strong> Engineering teams spend excessive time on manual bug triage, slowing down issue resolution.<br><strong class="text-slate-900">Solution:</strong> A unified GenAI platform that automates duplicate bug detection, classifies issues, and provides root-cause analysis suggestions across JIRA and HSDES.<br><strong class="text-slate-900">Impact:</strong> Reduced manual triage time by 60% and boosted triage precision by 10%.</p>
+                                 <span class="text-slate-500 font-semibold mt-4 inline-block">Internal Enterprise Tool</span>
+                            </div>
+                        </div>
+
+                        <!-- Project 3 -->
+                        <div class="content-card grid md:grid-cols-12 gap-8 items-center">
+                            <div class="md:col-span-1 text-5xl text-center text-blue-600">🖼️</div>
+                            <div class="md:col-span-11">
+                                <h3 class="text-2xl font-bold text-slate-800">Content Moderation Engine</h3>
+                                <p class="mt-2 text-slate-600"><strong class="text-slate-900">Problem:</strong> Global brands require scalable solutions to protect users from inappropriate content.<br><strong class="text-slate-900">Solution:</strong> A deep learning tool using Vision-Language models (CLIP) to moderate user-generated images at scale, ensuring brand safety.<br><strong class="text-slate-900">Impact:</strong> Delivered $1 million in operational savings for a global retail client.</p>
+                                 <a href="https://github.com/amioykr82/Image-Content-Moderation" target="_blank" class="text-blue-600 font-semibold mt-4 inline-block hover:text-blue-700">View on GitHub &rarr;</a>
+                            </div>
+                        </div>
+
+                        <!-- Project 4 -->
+                        <div class="content-card grid md:grid-cols-12 gap-8 items-center">
+                            <div class="md:col-span-1 text-5xl text-center text-blue-600">💿</div>
+                            <div class="md:col-span-11">
+                                <h3 class="text-2xl font-bold text-slate-800">AI Wafer Inspection System</h3>
+                                <p class="mt-2 text-slate-600"><strong class="text-slate-900">Problem:</strong> Manual inspection of semiconductor wafers for microscopic defects is slow and cannot scale with modern fabrication demands.<br><strong class="text-slate-900">Solution:</strong> A computer vision platform that uses high-resolution imaging and CNNs to automatically detect, classify, and map defects on wafers in real-time.<br><strong class="text-slate-900">Impact:</strong> Increased defect detection accuracy by 25% and boosted inspection throughput by over 200%.</p>
+                                <a href="https://github.com/amioykr82/Wafer-Defect-Pattern-Classification-Platform" target="_blank" class="text-blue-600 font-semibold mt-4 inline-block hover:text-blue-700">View on GitHub &rarr;</a> 
+                            </div>
+                        </div>
+
+                         <!-- Project 5 -->
+                        <div class="content-card grid md:grid-cols-12 gap-8 items-center">
+                            <div class="md:col-span-1 text-5xl text-center text-blue-600">🚗</div>
+                            <div class="md:col-span-11">
+                                <h3 class="text-2xl font-bold text-slate-800">Driver Drowsiness Detection System</h3>
+                                <p class="mt-2 text-slate-600"><strong class="text-slate-900">Problem:</strong> Driver fatigue is a leading cause of traffic accidents.<br><strong class="text-slate-900">Solution:</strong> An edge AI system using a lightweight camera and facial landmark analysis to monitor signs of drowsiness (eye closure, head pose) and trigger real-time alerts.<br><strong class="text-slate-900">Impact:</strong> Prototyped system demonstrated a 95% accuracy rate in detecting micro-sleep events in simulation.</p>
+                                <a href="https://github.com/amioykr82/driver-drowsiness-demo" target="_blank" class="text-blue-600 font-semibold mt-4 inline-block hover:text-blue-700">View on GitHub &rarr;</a> 
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Areas -->
+        <section id="research" class="py-16 bg-gray-50">
+            <div class="w-full pl-8 pr-8 xl:pr-72">
+                <div class="section-content">
+                    <h2 class="section-heading">Research & Thought Leadership</h2>
+                    <p class="section-subheading-full">
+                        Research expertise spanning GenAI, computer vision, biometric authentication, and quantum computing, with practical applications in real-time image processing and power optimization. Published insights through Medium articles covering AI-powered content moderation, semiconductor wafer inspection, and quantum computing prototypes. Research areas include fine-tuning LLMs, multimodal cryptography, CNNs for object detection, and IBM Qiskit for quantum algorithm development. Industry thought leadership focuses on translating complex AI research into actionable business solutions and emerging technology trends.
+                    </p>
+                    
+                    <div class="mt-12">
+                    <!-- Research Areas -->
+                    <div class="mb-16">
+                        <h3 class="text-2xl font-bold text-slate-800 mb-8">Core Research Areas</h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="content-card">
+                                <div class="grid grid-cols-3 gap-4 items-start">
+                                    <div class="font-bold text-blue-600">GenAI</div>
+                                    <div class="col-span-2 text-slate-600 text-sm">Fine-tuning, RAG, MCP protocols, in-context learning for LLM customization</div>
+                                </div>
+                            </div>
+                            <div class="content-card">
+                                <div class="grid grid-cols-3 gap-4 items-start">
+                                    <div class="font-bold text-blue-600">NLP</div>
+                                    <div class="col-span-2 text-slate-600 text-sm">Transformers, BERT, sentiment analysis, defect management systems</div>
+                                </div>
+                            </div>
+                            <div class="content-card">
+                                <div class="grid grid-cols-3 gap-4 items-start">
+                                    <div class="font-bold text-blue-600">Computer Vision</div>
+                                    <div class="col-span-2 text-slate-600 text-sm">CNNs, object detection, classification, sequence modeling</div>
+                                </div>
+                            </div>
+                            <div class="content-card">
+                                <div class="grid grid-cols-3 gap-4 items-start">
+                                    <div class="font-bold text-blue-600">Machine Learning</div>
+                                    <div class="col-span-2 text-slate-600 text-sm">SVM, Decision Trees, PCA, ICA, optimization algorithms</div>
+                                </div>
+                            </div>
+                            <div class="content-card">
+                                <div class="grid grid-cols-3 gap-4 items-start">
+                                    <div class="font-bold text-blue-600">Biometric Security</div>
+                                    <div class="col-span-2 text-slate-600 text-sm">Multimodal cryptography using palmprint, iris, face recognition</div>
+                                </div>
+                            </div>
+                            <div class="content-card">
+                                <div class="grid grid-cols-3 gap-4 items-start">
+                                    <div class="font-bold text-blue-600">Quantum Computing</div>
+                                    <div class="col-span-2 text-slate-600 text-sm">Qubits theory, cloud infrastructure, Qiskit (IBM)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Thought Leadership Articles -->
+                    <div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-8">Industry Insights & Thought Leadership</h3>
+                        <div class="space-y-6">
+                            <!-- Article 1 -->
+                            <div class="content-card border-l-4 border-l-blue-600">
+                                <div class="grid md:grid-cols-12 gap-4 items-start">
+                                    <div class="md:col-span-1 text-3xl text-center">🛡️</div>
+                                    <div class="md:col-span-11">
+                                        <h4 class="text-lg font-bold text-slate-800 mb-2">The Guardian of the Marketplace: How AI-Powered Image Moderation Is Solving E-Commerce's Billion-Dollar UGC Problem</h4>
+                                        <p class="text-slate-600 text-sm mb-3">A cutting-edge image content moderation system developed for a global retail client using deep learning techniques. Delivered 60% reduction in manual review tasks and $1 million in operational efficiency savings using OpenAI's CLIP technology.</p>
+                                        <a href="https://medium.com/@amioy.iitd/the-guardian-of-the-marketplace-how-ai-powered-image-moderation-is-solving-e-commerces-ffec64411073" target="_blank" class="text-blue-600 font-semibold text-sm hover:text-blue-700">Read on Medium →</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Article 2 -->
+                            <div class="content-card border-l-4 border-l-blue-600">
+                                <div class="grid md:grid-cols-12 gap-4 items-start">
+                                    <div class="md:col-span-1 text-3xl text-center">💎</div>
+                                    <div class="md:col-span-11">
+                                        <h4 class="text-lg font-bold text-slate-800 mb-2">The Million-Dollar Eye: How AI is Revolutionising Wafer Map Failure Pattern Recognition to Maximise Semiconductor Yield</h4>
+                                        <p class="text-slate-600 text-sm mb-3">In-depth analysis of wafer map defect inspection in semiconductor manufacturing where atomic-scale precision dictates multi-billion dollar outcomes. Explores AI-powered failure pattern recognition at scale.</p>
+                                        <a href="https://medium.com/@amioy.iitd/the-million-dollar-eye-how-ai-is-revolutionising-wafer-defect-detection-to-maximise-semiconductor-fe95ddc41af0" target="_blank" class="text-blue-600 font-semibold text-sm hover:text-blue-700">Read on Medium →</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Article 3 -->
+                            <div class="content-card border-l-4 border-l-blue-600">
+                                <div class="grid md:grid-cols-12 gap-4 items-start">
+                                    <div class="md:col-span-1 text-3xl text-center">⚛️</div>
+                                    <div class="md:col-span-11">
+                                        <h4 class="text-lg font-bold text-slate-800 mb-2">Hello, Quantum World! Building Your First Superconducting Qubit Prototype</h4>
+                                        <p class="text-slate-600 text-sm mb-3">Every quantum revolution begins with making a single qubit work: preparing, manipulating, and measuring it with high fidelity. A practical guide to building your first quantum computing prototype.</p>
+                                        <a href="https://medium.com/@amioy.iitd/hello-quantum-world-building-your-first-superconducting-qubit-prototype-ad8f42b0ab93" target="_blank" class="text-blue-600 font-semibold text-sm hover:text-blue-700">Read on Medium →</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Patents Section -->
+        <section id="patents" class="py-16 bg-white">
+            <div class="w-full pl-8 pr-8 xl:pr-72">
+                <div class="section-content">
+                    <h2 class="section-heading">Innovation Portfolio</h2>
+                    <p class="section-subheading-full">
+                        Patent portfolio covering power management algorithms, biometric security systems, and computer vision applications with granted US and Indian patents. Innovations include battery optimization for electronics devices, multimodal authentication frameworks, and content moderation systems developed during tenure at Samsung and Intel. Patent applications span mobile security frameworks, advanced color detection algorithms, and deep learning-based content moderation platforms. These intellectual property assets represent practical solutions that have been implemented in commercial products and enterprise systems.
+                    </p>
+                    
+                    <div class="mt-12">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-8">Patents & IP Assets</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="content-card">
+                            <div class="grid grid-cols-4 gap-3 items-start">
+                                <div class="font-bold text-blue-600 text-sm">Power Management</div>
+                                <div class="col-span-3 text-slate-600 text-xs">Advanced battery optimization for electronics devices (US Patent 201711029352)</div>
+                            </div>
+                        </div>
+                        <div class="content-card">
+                            <div class="grid grid-cols-4 gap-3 items-start">
+                                <div class="font-bold text-blue-600 text-sm">Device Optimization</div>
+                                <div class="col-span-3 text-slate-600 text-xs">Power optimization algorithms for battery-operated systems (IN 201711036738)</div>
+                            </div>
+                        </div>
+                        <div class="content-card">
+                            <div class="grid grid-cols-4 gap-3 items-start">
+                                <div class="font-bold text-blue-600 text-sm">Mobile Security</div>
+                                <div class="col-span-3 text-slate-600 text-xs">Personal security framework for smartphone applications (IN WI-201403-067-1)</div>
+                            </div>
+                        </div>
+                        <div class="content-card">
+                            <div class="grid grid-cols-4 gap-3 items-start">
+                                <div class="font-bold text-blue-600 text-sm">Biometric Systems</div>
+                                <div class="col-span-3 text-slate-600 text-xs">Multimodal biometric authentication for enterprise security (India Filing)</div>
+                            </div>
+                        </div>
+                        <div class="content-card">
+                            <div class="grid grid-cols-4 gap-3 items-start">
+                                <div class="font-bold text-blue-600 text-sm">Computer Vision</div>
+                                <div class="col-span-3 text-slate-600 text-xs">Advanced color detection and extraction for industrial applications (US Patent)</div>
+                            </div>
+                        </div>
+                        <div class="content-card">
+                            <div class="grid grid-cols-4 gap-3 items-start">
+                                <div class="font-bold text-blue-600 text-sm">Content Moderation</div>
+                                <div class="col-span-3 text-slate-600 text-xs">Deep learning-based content moderation for e-commerce platforms (US Patent)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications Section -->
+        <section id="publications" class="py-16 bg-gray-50">
+            <div class="w-full pl-8 pr-8 xl:pr-72">
+                <div class="section-content">
+                    <h2 class="section-heading">Academic Excellence</h2>
+                    <p class="section-subheading-full">
+                        Research publications in IEEE, ACM, and international journals focusing on multimodal biometric systems, machine learning algorithms, and AI security frameworks. Key contributions include adaptive cohort ranking for multibiometrics, unified finger dorsal traits authentication, and ant colony optimization for biometric fusion. Publications span from 2013 to 2022, covering novel biometric authentication methods, cryptosystems, and COVID-19 security solutions. Research demonstrates progression from foundational machine learning concepts to advanced AI applications in real-world security and identification systems.
+                    </p>
+                    
+                    <div class="mt-12">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-8">Selected Publications</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="content-card">
+                            <div class="grid grid-cols-4 gap-3 items-start">
+                                <div class="font-bold text-blue-600 text-sm">COVID-19 Security</div>
+                                <div class="col-span-3 text-slate-600 text-xs">Multimodal behavioral biometric authentication for pandemic safety (IJECES 2022)</div>
+                            </div>
+                        </div>
+                        <div class="content-card">
+                            <div class="grid grid-cols-4 gap-3 items-start">
+                                <div class="font-bold text-blue-600 text-sm">Biometric Fusion</div>
+                                <div class="col-span-3 text-slate-600 text-xs">Adaptive cohort ranking for multibiometrics recognition (IEEE ICB 2019)</div>
+                            </div>
+                        </div>
+                        <div class="content-card">
+                            <div class="grid grid-cols-4 gap-3 items-start">
+                                <div class="font-bold text-blue-600 text-sm">Finger Biometrics</div>
+                                <div class="col-span-3 text-slate-600 text-xs">Unified finger dorsal traits for enhanced authentication (Information Sciences 2019)</div>
+                            </div>
+                        </div>
+                        <div class="content-card">
+                            <div class="grid grid-cols-4 gap-3 items-start">
+                                <div class="font-bold text-blue-600 text-sm">AI Optimization</div>
+                                <div class="col-span-3 text-slate-600 text-xs">Ant colony optimization for multimodal biometric fusion (Information Fusion 2016)</div>
+                            </div>
+                        </div>
+                        <div class="content-card">
+                            <div class="grid grid-cols-4 gap-3 items-start">
+                                <div class="font-bold text-blue-600 text-sm">Cryptosystems</div>
+                                <div class="col-span-3 text-slate-600 text-xs">Cell-array based multi-biometric cryptographic systems (IEEE Access 2015)</div>
+                            </div>
+                        </div>
+                        <div class="content-card">
+                            <div class="grid grid-cols-4 gap-3 items-start">
+                                <div class="font-bold text-blue-600 text-sm">Novel Biometrics</div>
+                                <div class="col-span-3 text-slate-600 text-xs">Finger nail plate authentication for personal identification (Expert Systems 2014)</div>
+                            </div>
+                        </div>
+                        <div class="content-card">
+                            <div class="grid grid-cols-4 gap-3 items-start">
+                                <div class="font-bold text-blue-600 text-sm">Machine Learning</div>
+                                <div class="col-span-3 text-slate-600 text-xs">Fuzzy binary decision trees for biometric authentication (NeuroComputing 2013)</div>
+                            </div>
+                        </div>
+                        <div class="content-card">
+                            <div class="grid grid-cols-4 gap-3 items-start">
+                                <div class="font-bold text-blue-600 text-sm">Pattern Recognition</div>
+                                <div class="col-span-3 text-slate-600 text-xs">Surveillance systems using multimodal open set recognition (IEEE ICPR 2014)</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-12 text-center">
+                        <a href="https://scholar.google.com/citations?hl=en&user=F5pQFrUAAAAJ" target="_blank" class="cta-button">View Complete Publication List</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 hero-bg relative overflow-hidden">
+            <div class="absolute inset-0 bg-black opacity-20"></div>
+            <div class="relative w-full pl-8 pr-8 xl:pr-72">
+                <div class="section-content">
+                    <h2 class="section-heading text-white">Let's Collaborate</h2>
+                    <p class="section-subheading-full text-blue-100">
+                        Open to collaboration opportunities in AI solution architecture, computer vision applications, and enterprise AI transformation initiatives. Experienced in consulting for technology implementations ranging from content moderation systems to semiconductor inspection platforms. Available for advisory roles, technical consulting, and research partnerships focused on practical AI applications in business environments. Particularly interested in projects involving generative AI, biometric security systems, and quantum computing applications in enterprise settings.
+                    </p>
+                    
+                    <div class="mt-12">
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="contact-card">
+                            <div class="text-3xl mb-4">📧</div>
+                            <h3 class="text-lg font-bold mb-2">Email</h3>
+                            <a href="mailto:amioy.iitd@gmail.com" class="text-blue-100 hover:text-white">amioy.iitd@gmail.com</a>
+                        </div>
+                        <div class="contact-card">
+                            <div class="text-3xl mb-4">📱</div>
+                            <h3 class="text-lg font-bold mb-2">Phone</h3>
+                            <a href="tel:+919971382503" class="text-blue-100 hover:text-white">+91-9971382503</a>
+                        </div>
+                        <div class="contact-card">
+                            <div class="text-3xl mb-4">🌐</div>
+                            <h3 class="text-lg font-bold mb-2">Connect</h3>
+                            <div class="space-y-2">
+                                <a href="#" target="_blank" class="block text-blue-100 hover:text-white">LinkedIn</a>
+                                <a href="#" target="_blank" class="block text-blue-100 hover:text-white">GitHub</a>
+                                <a href="#" target="_blank" class="block text-blue-100 hover:text-white">Google Scholar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    </div> <!-- End Content Wrapper -->
+
+    <footer class="bg-slate-900 text-white py-8">
+        <div class="w-full pl-8 pr-8 xl:pr-72 text-center">
+            <div class="section-content">
+                <p class="text-slate-400">&copy; 2025 Dr. Amioy Kumar. All rights reserved.</p>
+                <p class="text-slate-500 text-sm mt-2">AI Solution Architect | MS(R), PhD, IIT Delhi</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+            const mobileNavMenu = document.getElementById('mobile-nav-menu');
+            const hamburger = document.getElementById('hamburger');
+            
+            // Mobile navigation toggle
+            mobileNavToggle.addEventListener('click', () => {
+                mobileNavMenu.classList.toggle('active');
+                hamburger.classList.toggle('rotate-45');
+            });
+            
+            // Handle navigation clicks for both desktop and mobile
+            const allNavLinks = document.querySelectorAll('.vertical-nav-item, .mobile-nav-item');
+            allNavLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // Close mobile menu if open
+                        mobileNavMenu.classList.remove('active');
+                        
+                        // Smooth scroll to target
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Update active states
+                        updateActiveNavItem(link.getAttribute('data-section'));
+                    }
+                });
+            });
+
+            // Function to update active navigation item
+            function updateActiveNavItem(activeSection) {
+                // Remove active class from all nav items
+                document.querySelectorAll('.vertical-nav-item, .mobile-nav-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Add active class to current section nav items
+                document.querySelectorAll(`[data-section="${activeSection}"]`).forEach(item => {
+                    item.classList.add('active');
+                });
+            }
+
+            // Intersection Observer for automatic active state updates
+            const sections = document.querySelectorAll('section');
+            const observerOptions = {
+                root: null,
+                rootMargin: '-20% 0px -20% 0px',
+                threshold: 0.3
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const sectionId = entry.target.getAttribute('id');
+                        updateActiveNavItem(sectionId);
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Photo upload functionality
+            const photoContainer = document.querySelector('.photo-container');
+            const photoUpload = document.getElementById('photo-upload');
+            const profilePhoto = document.getElementById('profile-photo');
+            
+            if (photoContainer && photoUpload && profilePhoto) {
+                photoContainer.addEventListener('click', () => {
+                    photoUpload.click();
+                });
+                
+                photoUpload.addEventListener('change', (e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                        // Validate file type
+                        if (!file.type.startsWith('image/')) {
+                            alert('Please select a valid image file.');
+                            return;
+                        }
+                        
+                        // Validate file size (max 5MB)
+                        if (file.size > 5 * 1024 * 1024) {
+                            alert('Please select an image smaller than 5MB.');
+                            return;
+                        }
+                        
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            profilePhoto.src = e.target.result;
+                            profilePhoto.alt = 'Your uploaded photo';
+                            
+                            // Store in localStorage for persistence
+                            localStorage.setItem('profilePhoto', e.target.result);
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+                
+                // Load saved photo from localStorage on page load
+                const savedPhoto = localStorage.getItem('profilePhoto');
+                if (savedPhoto) {
+                    profilePhoto.src = savedPhoto;
+                    profilePhoto.alt = 'Your uploaded photo';
+                }
+            }
+
+            // Initialize first section as active
+            updateActiveNavItem('hero');
+        });
+    </script>
+</body>
+</html>
