@@ -472,6 +472,24 @@
             box-shadow: 0 10px 25px rgba(30, 64, 175, 0.3);
         }
         
+        /* Precise alignment for contact cards to match reference text */
+        .contact-cards-container {
+            display: inline-grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            width: max-content;
+        }
+        
+        .aligned-contact-card {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            border-radius: 1rem;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(30, 64, 175, 0.3);
+            min-width: 0;
+        }
+        
         .publication-item {
             border-left: 4px solid #1e40af;
             padding-left: 1.5rem;
@@ -669,32 +687,32 @@
                             <p class="text-2xl font-light mb-4 text-blue-100">AI Solution Architect</p>
                             <p class="text-xl mb-4 text-blue-100">MS(R), PhD, IIT Delhi</p>
                             <p class="text-xl mb-4 text-blue-100">MSc, Industrial Mathematics, IIT Roorkee</p>
-                            <p class="text-xl mb-4 text-blue-100">Guest Faculty, Delhi Technological University, Delhi</p>
+                            <p class="text-xl mb-6 text-blue-100" id="reference-text">Guest Faculty, Delhi Technological University, Delhi</p>
                             
-                            <!-- Contact Cards -->
-                            <div class="grid grid-cols-2 gap-4 mb-8">
-                                <div class="contact-card">
-                                    <div class="text-sm font-medium mb-1">✉️ Email</div>
-                                    <a href="mailto:amioy.iitd@gmail.com" class="text-blue-100 hover:text-white">amioy.iitd@gmail.com</a>
+                            <!-- Contact Cards - aligned to reference text width -->
+                            <div class="contact-cards-container mb-6">
+                                <div class="aligned-contact-card">
+                                    <div class="text-sm font-medium mb-1 text-center">✉️ Email</div>
+                                    <a href="mailto:amioy.iitd@gmail.com" class="text-blue-100 hover:text-white block text-center">amioy.iitd@gmail.com</a>
                                 </div>
-                                <div class="contact-card">
-                                    <div class="text-sm font-medium mb-1">📱 Phone</div>
-                                    <a href="tel:+919971382503" class="text-blue-100 hover:text-white">+91-9971382503</a>
+                                <div class="aligned-contact-card">
+                                    <div class="text-sm font-medium mb-1 text-center">📱 Phone</div>
+                                    <a href="tel:+919971382503" class="text-blue-100 hover:text-white block text-center">+91-9971382503</a>
                                 </div>
                             </div>
                             
                             <!-- Social Links -->
-                            <div class="flex flex-wrap gap-2 sm:gap-3">
-                                <a href="https://www.linkedin.com/in/amioykr/" target="_blank" class="bg-white bg-opacity-20 px-2 sm:px-3 py-2 rounded-lg text-white hover:bg-opacity-30 transition-all text-xs sm:text-sm">
+                            <div class="grid grid-cols-4 gap-2">
+                                <a href="https://www.linkedin.com/in/amioykr/" target="_blank" class="bg-white bg-opacity-20 px-2 py-2 rounded-lg text-white hover:bg-opacity-30 transition-all text-xs text-center">
                                     LinkedIn
                                 </a>
-                                <a href="https://github.com/amioykr82" target="_blank" class="bg-white bg-opacity-20 px-2 sm:px-3 py-2 rounded-lg text-white hover:bg-opacity-30 transition-all text-xs sm:text-sm">
+                                <a href="https://github.com/amioykr82" target="_blank" class="bg-white bg-opacity-20 px-2 py-2 rounded-lg text-white hover:bg-opacity-30 transition-all text-xs text-center">
                                     GitHub
                                 </a>
-                                <a href="https://scholar.google.com/citations?hl=en&user=F5pQFrUAAAAJ" target="_blank" class="bg-white bg-opacity-20 px-2 sm:px-3 py-2 rounded-lg text-white hover:bg-opacity-30 transition-all text-xs sm:text-sm">
+                                <a href="https://scholar.google.com/citations?hl=en&user=F5pQFrUAAAAJ" target="_blank" class="bg-white bg-opacity-20 px-2 py-2 rounded-lg text-white hover:bg-opacity-30 transition-all text-xs text-center">
                                     Scholar
                                 </a>
-                                <a href="https://medium.com/@amioy.iitd" target="_blank" class="bg-white bg-opacity-20 px-2 sm:px-3 py-2 rounded-lg text-white hover:bg-opacity-30 transition-all text-xs sm:text-sm">
+                                <a href="https://medium.com/@amioy.iitd" target="_blank" class="bg-white bg-opacity-20 px-2 py-2 rounded-lg text-white hover:bg-opacity-30 transition-all text-xs text-center">
                                     Medium
                                 </a>
                             </div>
@@ -730,32 +748,32 @@
                             <p class="text-2xl font-light mb-4 text-blue-100">AI Solution Architect</p>
                             <p class="text-xl mb-4 text-blue-100">MS(R), PhD, IIT Delhi</p>
                             <p class="text-xl mb-4 text-blue-100">MSc, Industrial Mathematics, IIT Roorkee</p>
-                            <p class="text-xl mb-8 text-blue-100">Guest Faculty, Delhi Technological University</p>
+                            <p class="text-xl mb-6 text-blue-100">Guest Faculty, Delhi Technological University, Delhi</p>
                             
                             <!-- Contact Cards -->
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 max-w-lg mx-auto">
                                 <div class="contact-card">
-                                    <div class="text-sm font-medium mb-1">✉️ Email</div>
-                                    <a href="mailto:amioy.iitd@gmail.com" class="text-blue-100 hover:text-white">amioy.iitd@gmail.com</a>
+                                    <div class="text-sm font-medium mb-1 text-center">✉️ Email</div>
+                                    <a href="mailto:amioy.iitd@gmail.com" class="text-blue-100 hover:text-white block text-center">amioy.iitd@gmail.com</a>
                                 </div>
                                 <div class="contact-card">
-                                    <div class="text-sm font-medium mb-1">📱 Phone</div>
-                                    <a href="tel:+919971382503" class="text-blue-100 hover:text-white">+91-9971382503</a>
+                                    <div class="text-sm font-medium mb-1 text-center">📱 Phone</div>
+                                    <a href="tel:+919971382503" class="text-blue-100 hover:text-white block text-center">+91-9971382503</a>
                                 </div>
                             </div>
                             
                             <!-- Social Links -->
-                            <div class="flex flex-wrap gap-2 sm:gap-3 justify-center">
-                                <a href="https://www.linkedin.com/in/amioykr/" target="_blank" class="bg-white bg-opacity-20 px-2 sm:px-3 py-2 rounded-lg text-white hover:bg-opacity-30 transition-all text-xs sm:text-sm">
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 max-w-lg mx-auto">
+                                <a href="https://www.linkedin.com/in/amioykr/" target="_blank" class="bg-white bg-opacity-20 px-2 py-2 rounded-lg text-white hover:bg-opacity-30 transition-all text-xs text-center">
                                     LinkedIn
                                 </a>
-                                <a href="https://github.com/amioykr82" target="_blank" class="bg-white bg-opacity-20 px-2 sm:px-3 py-2 rounded-lg text-white hover:bg-opacity-30 transition-all text-xs sm:text-sm">
+                                <a href="https://github.com/amioykr82" target="_blank" class="bg-white bg-opacity-20 px-2 py-2 rounded-lg text-white hover:bg-opacity-30 transition-all text-xs text-center">
                                     GitHub
                                 </a>
-                                <a href="https://scholar.google.com/citations?hl=en&user=F5pQFrUAAAAJ" target="_blank" class="bg-white bg-opacity-20 px-2 sm:px-3 py-2 rounded-lg text-white hover:bg-opacity-30 transition-all text-xs sm:text-sm">
+                                <a href="https://scholar.google.com/citations?hl=en&user=F5pQFrUAAAAJ" target="_blank" class="bg-white bg-opacity-20 px-2 py-2 rounded-lg text-white hover:bg-opacity-30 transition-all text-xs text-center">
                                     Scholar
                                 </a>
-                                <a href="https://medium.com/@amioy.iitd" target="_blank" class="bg-white bg-opacity-20 px-2 sm:px-3 py-2 rounded-lg text-white hover:bg-opacity-30 transition-all text-xs sm:text-sm">
+                                <a href="https://medium.com/@amioy.iitd" target="_blank" class="bg-white bg-opacity-20 px-2 py-2 rounded-lg text-white hover:bg-opacity-30 transition-all text-xs text-center">
                                     Medium
                                 </a>
                             </div>
@@ -1364,6 +1382,34 @@
 
             // Initialize first section as active
             updateActiveNavItem('hero');
+            
+            // Precise alignment function for contact cards
+            function alignContactCardsToText() {
+                const referenceText = document.getElementById('reference-text');
+                const contactCardsContainer = document.querySelector('.contact-cards-container');
+                
+                if (referenceText && contactCardsContainer) {
+                    // Create a temporary span to measure text width precisely
+                    const tempSpan = document.createElement('span');
+                    tempSpan.style.visibility = 'hidden';
+                    tempSpan.style.position = 'absolute';
+                    tempSpan.style.fontSize = '1.25rem'; // text-xl
+                    tempSpan.style.fontFamily = window.getComputedStyle(referenceText).fontFamily;
+                    tempSpan.style.fontWeight = window.getComputedStyle(referenceText).fontWeight;
+                    tempSpan.textContent = referenceText.textContent;
+                    
+                    document.body.appendChild(tempSpan);
+                    const textWidth = tempSpan.offsetWidth;
+                    document.body.removeChild(tempSpan);
+                    
+                    // Apply the exact width to contact cards container
+                    contactCardsContainer.style.width = textWidth + 'px';
+                }
+            }
+            
+            // Run alignment on load and resize
+            alignContactCardsToText();
+            window.addEventListener('resize', alignContactCardsToText);
         });
     </script>
 </body>
