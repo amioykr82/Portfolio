@@ -490,6 +490,14 @@
             min-width: 0;
         }
         
+        /* Social links container aligned to contact cards */
+        .social-links-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 0.5rem;
+            width: 100%;
+        }
+        
         .publication-item {
             border-left: 4px solid #1e40af;
             padding-left: 1.5rem;
@@ -702,7 +710,7 @@
                             </div>
                             
                             <!-- Social Links -->
-                            <div class="grid grid-cols-4 gap-2">
+                            <div class="social-links-container">
                                 <a href="https://www.linkedin.com/in/amioykr/" target="_blank" class="bg-white bg-opacity-20 px-2 py-2 rounded-lg text-white hover:bg-opacity-30 transition-all text-xs text-center">
                                     LinkedIn
                                 </a>
@@ -721,7 +729,7 @@
                         <!-- Image positioned much closer to the right vertical navigation -->
                         <div class="absolute right-32 top-1/2 transform -translate-y-1/2 hero-image-container">
                             <div class="floating-card w-80 h-80 relative">
-                                <img id="profile-photo" src="./WhatsApp%20Image%202025-06-27%20at%2015.13.34.jpeg" alt="Dr. Amioy Kumar" class="rounded-full w-full h-full object-cover border-8 border-white shadow-2xl" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img id="profile-photo" src="./WhatsApp%20Image%202025-06-28%20at%2020.16.11.jpeg" alt="Dr. Amioy Kumar" class="rounded-full w-full h-full object-cover border-8 border-white shadow-2xl" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="rounded-full w-full h-full bg-gradient-to-br from-blue-500 to-blue-700 border-8 border-white shadow-2xl flex items-center justify-center text-white text-6xl font-bold" style="display: none;">
                                     AK
                                 </div>
@@ -736,7 +744,7 @@
                     <div class="lg:hidden px-4 space-y-8">
                         <div class="flex justify-center">
                             <div class="floating-card w-64 h-64 relative">
-                                <img id="profile-photo-mobile" src="./WhatsApp%20Image%202025-06-27%20at%2015.13.34.jpeg" alt="Dr. Amioy Kumar" class="rounded-full w-full h-full object-cover border-8 border-white shadow-2xl" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img id="profile-photo-mobile" src="./WhatsApp%20Image%202025-06-28%20at%2020.16.11.jpeg" alt="Dr. Amioy Kumar" class="rounded-full w-full h-full object-cover border-8 border-white shadow-2xl" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="rounded-full w-full h-full bg-gradient-to-br from-blue-500 to-blue-700 border-8 border-white shadow-2xl flex items-center justify-center text-white text-6xl font-bold" style="display: none;">
                                     AK
                                 </div>
@@ -1383,10 +1391,11 @@
             // Initialize first section as active
             updateActiveNavItem('hero');
             
-            // Precise alignment function for contact cards
+            // Precise alignment function for contact cards and social links
             function alignContactCardsToText() {
                 const referenceText = document.getElementById('reference-text');
                 const contactCardsContainer = document.querySelector('.contact-cards-container');
+                const socialLinksContainer = document.querySelector('.social-links-container');
                 
                 if (referenceText && contactCardsContainer) {
                     // Create a temporary span to measure text width precisely
@@ -1404,6 +1413,11 @@
                     
                     // Apply the exact width to contact cards container
                     contactCardsContainer.style.width = textWidth + 'px';
+                    
+                    // Apply the same width to social links container
+                    if (socialLinksContainer) {
+                        socialLinksContainer.style.width = textWidth + 'px';
+                    }
                 }
             }
             
